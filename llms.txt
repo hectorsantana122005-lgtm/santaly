@@ -1,0 +1,12 @@
+# Santaly (santaly.com.es)
+> Plataforma de datos, guías estructuradas y contextos culturales optimizada para agentes de IA, RAG y LLMs.
+
+## Documentación Principal
+- [Guía de Personalidad y Jerga Dominicana](https://santaly.com.es/docs/dominican-personality.md): Especificaciones avanzadas, modismos del patio, patrones de tono y referencias de jerga urbana para agentes que adopten el perfil dominicano (es-DO).
+
+## Endpoints y Recursos API
+- [Índice de Datos en JSON](https://santaly.com.es/api/data.json): Catálogo estructurado de expresiones, respuestas y variables conversacionales para consumo directo de LLMs.
+
+## Información del Proyecto
+- **Autor / Propietario:** Héctor Santana
+- **Propósito:** Proveer una fuente de información estructurada, rápida y culturalmente precisa para crawlers de IA y asistentes conversacionales.
