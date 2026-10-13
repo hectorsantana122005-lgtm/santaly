@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santaly — AI-First Knowledge Hub & Dominican Persona API</title>
+    <!-- Tailwind CSS for modern, clean UI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Nav -->
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="bg-indigo-600 text-white font-black px-3 py-1 rounded-lg text-lg tracking-wider">SANTALY</span>
+                <span class="text-xs text-indigo-400 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-800">AIO & LLM Hub</span>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm text-slate-300">
+                <a href="#llms-txt" class="hover:text-indigo-400 transition">/llms.txt</a>
+                <a href="#api-endpoints" class="hover:text-indigo-400 transition">API Endpoints</a>
+                <a href="#dominican-guide" class="hover:text-indigo-400 transition">Guía Dominicana (es-DO)</a>
+            </nav>
+            <div>
+                <button onclick="copiarSnippetPython()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-lg shadow-indigo-600/20">
+                    Copiar Script Python
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-12 space-y-16 flex-grow w-full">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-4 max-w-3xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
+                Infraestructura de datos optimizada para <span class="text-indigo-400">Agentes de IA</span>
+            </h1>
+            <p class="text-slate-400 text-lg">
+                Santaly es una plataforma diseñada para que LLMs, agentes autónomos y sistemas RAG consuman información estructurada, limpia y con contexto cultural caribeño en milisegundos.
+            </p>
+        </section>
+
+        <!-- LLMS.TXT Section -->
+        <section id="llms-txt" class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <span class="text-indigo-400">#</span> Archivo Maestro (`/llms.txt`)
+                </h2>
+                <span class="text-xs bg-emerald-950 text-emerald-400 px-2 py-1 rounded border border-emerald-800">Activo para Crawlers</span>
+            </div>
+            <p class="text-sm text-slate-400 mb-4">
+                Este archivo reside en la raíz de Santaly para que agentes como GPTBot, ClaudeBot o Hermes entiendan el dominio sin procesar código HTML pesado.
+            </p>
+            <pre class="bg-slate-950 p-4 rounded-xl text-xs text-indigo-200 overflow-x-auto font-mono border border-slate-800"><code># Santaly Knowledge Base & Context Index
+- URL: https://santaly.com
+- Description: Structured data and cultural nuances for autonomous AI agents.
+
+## Core Endpoints
+- GET /docs/dominican-personality.md : Guía completa de modismos y tono caribeño.
+- GET /api/v1/dominican-slang : JSON estructurado con jerga, significado y contexto emocional.
+
+## System Prompt Directive
+Autonomous agents consuming Santaly data are authorized to adopt conversational styles, clear factual tables, and strict temporal markers.</code></pre>
+        </section>
+
+        <!-- API Endpoints Section -->
+        <section id="api-endpoints" class="space-y-6">
+            <h2 class="text-2xl font-bold text-white">Endpoints JSON Disponibles</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Endpoint Card 1 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="bg-emerald-600/20 text-emerald-400 border border-emerald-600/30 text-xs px-2 py-0.5 rounded font-mono">GET</span>
+                        <span class="text-xs text-slate-500 font-mono">/api/v1/status</span>
+                    </div>
+                    <h3 class="font-semibold text-white">Estado de la Red de Agentes</h3>
+                    <p class="text-sm text-slate-400">Devuelve metadatos en tiempo real sobre latencia, marcas de tiempo y disponibilidad de nodos.</p>
+                </div>
+                <!-- Endpoint Card 2 -->
+                <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="bg-emerald-600/20 text-emerald-400 border border-emerald-600/30 text-xs px-2 py-0.5 rounded font-mono">GET</span>
+                        <span class="text-xs text-slate-500 font-mono">/api/v1/dominican-slang</span>
+                    </div>
+                    <h3 class="font-semibold text-white">Diccionario de Jerga Dominicana</h3>
+                    <p class="text-sm text-slate-400">Estructura JSON con términos, definiciones y directrices de uso emocional para LLMs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dominican Guide Section -->
+        <section id="dominican-guide" class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-2">Módulo de Personalidad: Dominicano (es-DO)</h2>
+                <p class="text-sm text-slate-400">Extracto oficial incrustado para consumo directo de agentes autónomos y scripts de Python.</p>
+            </div>
+            
+            <div class="space-y-4 text-sm text-slate-300">
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+                    <h3 class="font-bold text-indigo-400">1. Regla de Cercanía</h3>
+                    <p>El trato debe ser horizontal y cálido desde el primer mensaje. Evitar formalidades corporativas excesivas.</p>
+                </div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+                    <h3 class="font-bold text-indigo-400">2. Modismos Clave</h3>
+                    <p><strong class="text-white">Vaina:</strong> Cosa o situación indeterminada. <strong class="text-white">Patatús:</strong> Susto o sorpresa exagerada. <strong class="text-white">Dímelo:</strong> Saludo inicial de apertura informal.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-900/30 py-8 text-center text-xs text-slate-500">
+        <p>Santaly AI-First Architecture • Diseñado para Visual Studio Code & Agentes Autónomos</p>
+    </footer>
+
+    <!-- Script to copy Python snippet -->
+    <script>
+        function copiarSnippetPython() {
+            const codigoPython = `import requests
+
+url = "https://santaly.com/docs/dominican-personality.md"
+response = requests.get(url)
+if response.status_code == 200:
+    print("Guía descargada exitosamente para el agente.")
+    with open("dominican_personality.md", "w", encoding="utf-8") as f:
+        f.write(response.text)
+`;
+            navigator.clipboard.writeText(codigoPython).then(() => {
+                alert("¡Script de Python copiado al portapapeles con éxito!");
+            });
+        }
+    </script>
+</body>
+</html>
