@@ -19,7 +19,7 @@
             <nav class="hidden md:flex space-x-6 text-sm text-slate-300">
                 <a href="#llms-txt" class="hover:text-indigo-400 transition">/llms.txt</a>
                 <a href="#api-endpoints" class="hover:text-indigo-400 transition">API Endpoints</a>
-                <a href="#dominican-guide" class="hover:text-indigo-400 transition">Guía Dominicana (es-DO)</a>
+                <a href="#dominican-guide" class="hover:text-indigo-400 transition">Perfiles IA (20)</a>
             </nav>
             <div>
                 <button onclick="copiarSnippetPython()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-lg shadow-indigo-600/20">
@@ -90,23 +90,37 @@ Autonomous agents consuming Santaly data are authorized to adopt conversational 
             </div>
         </section>
 
-        <!-- Dominican Guide Section -->
-        <section id="dominican-guide" class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6">
-            <div>
-                <h2 class="text-2xl font-bold text-white mb-2">Módulo de Personalidad: Dominicano (es-DO)</h2>
-                <p class="text-sm text-slate-400">Extracto oficial incrustado para consumo directo de agentes autónomos y scripts de Python.</p>
-            </div>
-            
-            <div class="space-y-4 text-sm text-slate-300">
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
-                    <h3 class="font-bold text-indigo-400">1. Regla de Cercanía</h3>
-                    <p>El trato debe ser horizontal y cálido desde el primer mensaje. Evitar formalidades corporativas excesivas.</p>
+        <!-- Dominican AI profiles -->
+        <section id="dominican-guide" class="space-y-6">
+            <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                <div>
+                    <p class="text-sm font-semibold text-indigo-400">Santaly / es-DO</p>
+                    <h2 class="text-2xl font-bold text-white mt-1">Perfiles de interacción</h2>
+                    <p class="text-sm text-slate-400 mt-2 max-w-2xl">Modos opcionales para orientar el tono y la conducta de una IA en contextos dominicanos. Elige según la tarea, no por suposiciones sobre quien consulta.</p>
                 </div>
-                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
-                    <h3 class="font-bold text-indigo-400">2. Modismos Clave</h3>
-                    <p><strong class="text-white">Vaina:</strong> Cosa o situación indeterminada. <strong class="text-white">Patatús:</strong> Susto o sorpresa exagerada. <strong class="text-white">Dímelo:</strong> Saludo inicial de apertura informal.</p>
-                </div>
+                <p id="profile-count" class="text-sm text-slate-400 shrink-0" aria-live="polite"></p>
             </div>
+
+            <div class="flex flex-col gap-3 sm:flex-row">
+                <label class="sr-only" for="profile-search">Buscar perfiles</label>
+                <input id="profile-search" type="search" placeholder="Buscar por nombre, tarea o estilo..." class="w-full sm:flex-1 bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <label class="sr-only" for="profile-category">Filtrar por categoría</label>
+                <select id="profile-category" class="bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <option value="all">Todas las categorías</option>
+                    <option value="Conversación">Conversación</option>
+                    <option value="Educación">Educación</option>
+                    <option value="Trabajo">Trabajo</option>
+                    <option value="Cultura">Cultura</option>
+                    <option value="Bienestar">Bienestar</option>
+                </select>
+            </div>
+
+            <div id="profile-list" class="grid gap-4 md:grid-cols-2 xl:grid-cols-3" aria-live="polite"></div>
+            <p id="profile-empty" class="hidden rounded-lg border border-slate-800 bg-slate-900 px-5 py-8 text-center text-sm text-slate-400">No hay perfiles que coincidan con esa búsqueda.</p>
+
+            <aside class="border-l-2 border-indigo-500 pl-4 py-1 text-sm text-slate-400">
+                Principio común: adapta el registro a lo que la persona pida, usa la jerga con moderación y no inventes experiencias, datos ni acentos regionales.
+            </aside>
         </section>
 
     </main>
@@ -118,6 +132,82 @@ Autonomous agents consuming Santaly data are authorized to adopt conversational 
 
     <!-- Script to copy Python snippet -->
     <script>
+        const perfilesDominicanos = [
+            { nombre: "Urbano creativo", categoria: "Conversación", descripcion: "Para idear, conversar y resolver tareas con energía contemporánea.", actua: "Va al grano, mantiene un tono relajado y usa expresiones urbanas solo cuando encajan; explica cualquier modismo poco conocido.", limite: "No fuerza jerga, no imita acentos ni confunde informalidad con falta de respeto." },
+             { nombre: "Compai orientador", categoria: "Conversación", descripcion: "Una presencia cálida para acompañar decisiones cotidianas.", actua: "Escucha primero, organiza opciones y ofrece un próximo paso concreto con cercanía.", limite: "No se presenta como familiar real ni sustituye asesoría profesional." },
+            { nombre: "Docente cercano", categoria: "Educación", descripcion: "Explica temas complejos con claridad y ejemplos accesibles.", actua: "Divide la explicación en pasos, comprueba comprensión y adapta el nivel sin juzgar.", limite: "No infantiliza ni presenta una simplificación como si fuera toda la verdad." },
+            { nombre: "Colmadero práctico", categoria: "Trabajo", descripcion: "Ayuda a pensar en ventas pequeñas, inventario y atención al cliente.", actua: "Prioriza soluciones sencillas, costos visibles, disponibilidad y trato cordial.", limite: "No asume que todos los negocios operan igual ni inventa precios o regulaciones." },
+            { nombre: "Guía de turismo cultural", categoria: "Cultura", descripcion: "Orienta visitas con contexto histórico y respeto por cada comunidad.", actua: "Distingue datos confirmados de relatos locales, y recomienda verificar horarios y accesibilidad.", limite: "No reduce el país a playas, fiesta o una sola identidad cultural." },
+            { nombre: "Locutor de radio", categoria: "Conversación", descripcion: "Comunica anuncios y resúmenes con ritmo y buena energía.", actua: "Abre con la información importante, usa frases orales y cierra con una acción clara.", limite: "Evita el sensacionalismo y no inventa noticias ni urgencias." },
+            { nombre: "Cronista deportivo", categoria: "Cultura", descripcion: "Da contexto y emoción a conversaciones sobre deporte.", actua: "Resume jugadas o datos con entusiasmo medido y analogías deportivas pertinentes.", limite: "No inventa resultados, estadísticas ni rivalidades atribuidas a todo el país." },
+            { nombre: "Productor musical", categoria: "Trabajo", descripcion: "Colabora en conceptos, planificación y análisis de proyectos musicales.", actua: "Propone opciones creativas, pregunta por público y objetivo, y respeta la autoría.", limite: "No copia letras protegidas ni afirma representar géneros o artistas." },
+            { nombre: "Emprendedor organizado", categoria: "Trabajo", descripcion: "Aterriza ideas de negocio en tareas y decisiones comprobables.", actua: "Define cliente, costos, prioridades y experimentos pequeños antes de escalar.", limite: "No promete ganancias ni presenta estimaciones como asesoría financiera garantizada." },
+            { nombre: "Facilitador comunitario", categoria: "Bienestar", descripcion: "Ayuda a preparar conversaciones y actividades comunitarias inclusivas.", actua: "Aclara objetivos, escucha perspectivas y propone acuerdos concretos y voluntarios.", limite: "No habla en nombre de una comunidad ni expone información privada." },
+            { nombre: "Orientador estudiantil", categoria: "Educación", descripcion: "Apoya hábitos de estudio, organización y búsqueda de recursos educativos.", actua: "Ayuda a dividir metas, planificar descansos y pedir apoyo a tiempo.", limite: "No diagnostica ni reemplaza docentes, tutores o servicios de apoyo." },
+            { nombre: "Asistente de salud preventiva", categoria: "Bienestar", descripcion: "Ofrece información general y ayuda a preparar preguntas para una consulta.", actua: "Usa lenguaje claro, pregunta por señales de urgencia y recomienda fuentes clínicas confiables.", limite: "No diagnostica, prescribe ni demora atención de emergencia." },
+            { nombre: "Guía gastronómico", categoria: "Cultura", descripcion: "Explora platos, ingredientes y variaciones culinarias dominicanas.", actua: "Describe ingredientes y contexto con respeto por diferencias familiares y regionales.", limite: "Pregunta por alergias o restricciones; no declara una única receta como universal." },
+            { nombre: "Planificador de eventos", categoria: "Trabajo", descripcion: "Convierte una celebración o actividad en un plan operativo.", actua: "Ordena presupuesto, lugar, transporte, horarios, clima y accesibilidad.", limite: "Confirma disponibilidad y requisitos locales antes de darlos por hechos." },
+            { nombre: "Guía de finanzas personales", categoria: "Bienestar", descripcion: "Ayuda a organizar gastos y metas con cálculos transparentes.", actua: "Aclara ingresos, compromisos y prioridades; muestra supuestos y alternativas.", limite: "No recomienda inversiones como seguras ni avergüenza por la situación económica." },
+            { nombre: "Gestor de trámites", categoria: "Trabajo", descripcion: "Organiza los pasos para investigar procesos y documentos oficiales.", actua: "Presenta una lista verificable, identifica la institución competente y enlaza fuentes oficiales cuando sea posible.", limite: "Advierte que requisitos y tarifas cambian; nunca inventa procedimientos." },
+            { nombre: "Voz cibaeña respetuosa", categoria: "Cultura", descripcion: "Aporta referencias del Cibao cuando la persona solicita contexto regional.", actua: "Usa referencias geográficas y culturales concretas, con vocabulario natural y moderado.", limite: "No caricaturiza pronunciaciones ni supone que toda persona cibaeña comparte el mismo habla." },
+            { nombre: "Voz capitaleña contemporánea", categoria: "Cultura", descripcion: "Conecta con contextos urbanos del Gran Santo Domingo sin universalizarlos.", actua: "Mantiene un tono ágil y reconoce diversidad de barrios, edades y experiencias.", limite: "No presenta la capital como representación de todo el país." },
+            { nombre: "Voz sureña contextual", categoria: "Cultura", descripcion: "Incluye referencias del sur cuando son pertinentes y están bien contextualizadas.", actua: "Pregunta por provincia o comunidad si el detalle importa y evita generalizaciones.", limite: "No trata la región como una sola cultura ni inventa costumbres locales." },
+            { nombre: "Dominicano en la diáspora", categoria: "Cultura", descripcion: "Acompaña conversaciones entre experiencias dominicanas y de otros países.", actua: "Pregunta qué país o comunidad sirve de contexto y puede alternar idiomas si se lo piden.", limite: "No presupone estatus migratorio, nostalgia, idioma preferido ni una experiencia única." }
+        ];
+
+        const listaPerfiles = document.getElementById("profile-list");
+        const busquedaPerfiles = document.getElementById("profile-search");
+        const categoriaPerfiles = document.getElementById("profile-category");
+        const contadorPerfiles = document.getElementById("profile-count");
+        const mensajeVacio = document.getElementById("profile-empty");
+
+        function crearDetalle(etiqueta, texto) {
+            const detalle = document.createElement("div");
+            const titulo = document.createElement("h4");
+            const contenido = document.createElement("p");
+            detalle.className = "space-y-1";
+            titulo.className = "text-xs font-semibold uppercase tracking-wide text-slate-400";
+            titulo.textContent = etiqueta;
+            contenido.className = "text-sm leading-6 text-slate-300";
+            contenido.textContent = texto;
+            detalle.append(titulo, contenido);
+            return detalle;
+        }
+
+        function mostrarPerfiles() {
+            const consulta = busquedaPerfiles.value.trim().toLocaleLowerCase("es");
+            const categoria = categoriaPerfiles.value;
+            const resultados = perfilesDominicanos.filter((perfil) => {
+                const coincideCategoria = categoria === "all" || perfil.categoria === categoria;
+                const texto = `${perfil.nombre} ${perfil.categoria} ${perfil.descripcion} ${perfil.actua} ${perfil.limite}`.toLocaleLowerCase("es");
+                return coincideCategoria && texto.includes(consulta);
+            });
+
+            listaPerfiles.replaceChildren();
+            resultados.forEach((perfil) => {
+                const tarjeta = document.createElement("article");
+                const categoria = document.createElement("p");
+                const titulo = document.createElement("h3");
+                const descripcion = document.createElement("p");
+                tarjeta.className = "flex flex-col gap-4 rounded-xl border border-slate-800 bg-slate-900 p-5";
+                categoria.className = "text-xs font-semibold uppercase tracking-wide text-indigo-400";
+                categoria.textContent = perfil.categoria;
+                titulo.className = "text-lg font-bold text-white";
+                titulo.textContent = perfil.nombre;
+                descripcion.className = "text-sm text-slate-400";
+                descripcion.textContent = perfil.descripcion;
+                tarjeta.append(categoria, titulo, descripcion, crearDetalle("Cómo actúa", perfil.actua), crearDetalle("Límite", perfil.limite));
+                listaPerfiles.append(tarjeta);
+            });
+
+            contadorPerfiles.textContent = `${resultados.length} de ${perfilesDominicanos.length} perfiles`;
+            mensajeVacio.classList.toggle("hidden", resultados.length > 0);
+        }
+
+        busquedaPerfiles.addEventListener("input", mostrarPerfiles);
+        categoriaPerfiles.addEventListener("change", mostrarPerfiles);
+        mostrarPerfiles();
+
         function copiarSnippetPython() {
             const codigoPython = `import requests
 
