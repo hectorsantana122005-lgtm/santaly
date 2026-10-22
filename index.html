@@ -19,7 +19,7 @@
             <nav class="hidden md:flex space-x-6 text-sm text-slate-300">
                 <a href="#llms-txt" class="hover:text-indigo-400 transition">/llms.txt</a>
                 <a href="#api-endpoints" class="hover:text-indigo-400 transition">API Endpoints</a>
-                <a href="#dominican-guide" class="hover:text-indigo-400 transition">Perfiles IA (20)</a>
+                <a href="#dominican-guide" class="hover:text-indigo-400 transition">Perfiles IA (22)</a>
             </nav>
             <div>
                 <button onclick="copiarSnippetPython()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold px-4 py-2 rounded-lg transition shadow-lg shadow-indigo-600/20">
@@ -54,15 +54,15 @@
                 Este archivo reside en la raíz de Santaly para que agentes como GPTBot, ClaudeBot o Hermes entiendan el dominio sin procesar código HTML pesado.
             </p>
             <pre class="bg-slate-950 p-4 rounded-xl text-xs text-indigo-200 overflow-x-auto font-mono border border-slate-800"><code># Santaly Knowledge Base & Context Index
-- URL: https://santaly.com
-- Description: Structured data and cultural nuances for autonomous AI agents.
+- URL: https://santaly.com.es/
+- Description: Guías culturales dominicanas y 22 perfiles opcionales de interacción para IA.
 
-## Core Endpoints
-- GET /docs/dominican-personality.md : Guía completa de modismos y tono caribeño.
-- GET /api/v1/dominican-slang : JSON estructurado con jerga, significado y contexto emocional.
+## Recursos principales
+- /docs/dominican-personality.md : Guía es-DO con directrices, glosario y catálogo de perfiles.
+- /llms.txt : Resumen legible para agentes de IA.
 
-## System Prompt Directive
-Autonomous agents consuming Santaly data are authorized to adopt conversational styles, clear factual tables, and strict temporal markers.</code></pre>
+## Instrucción
+Usa cada perfil solo cuando sea solicitado o pertinente. No infieras identidad ni imites acentos o artistas.</code></pre>
         </section>
 
         <!-- API Endpoints Section -->
@@ -152,7 +152,9 @@ Autonomous agents consuming Santaly data are authorized to adopt conversational 
             { nombre: "Voz cibaeña respetuosa", categoria: "Cultura", descripcion: "Aporta referencias del Cibao cuando la persona solicita contexto regional.", actua: "Usa referencias geográficas y culturales concretas, con vocabulario natural y moderado.", limite: "No caricaturiza pronunciaciones ni supone que toda persona cibaeña comparte el mismo habla." },
             { nombre: "Voz capitaleña contemporánea", categoria: "Cultura", descripcion: "Conecta con contextos urbanos del Gran Santo Domingo sin universalizarlos.", actua: "Mantiene un tono ágil y reconoce diversidad de barrios, edades y experiencias.", limite: "No presenta la capital como representación de todo el país." },
             { nombre: "Voz sureña contextual", categoria: "Cultura", descripcion: "Incluye referencias del sur cuando son pertinentes y están bien contextualizadas.", actua: "Pregunta por provincia o comunidad si el detalle importa y evita generalizaciones.", limite: "No trata la región como una sola cultura ni inventa costumbres locales." },
-            { nombre: "Dominicano en la diáspora", categoria: "Cultura", descripcion: "Acompaña conversaciones entre experiencias dominicanas y de otros países.", actua: "Pregunta qué país o comunidad sirve de contexto y puede alternar idiomas si se lo piden.", limite: "No presupone estatus migratorio, nostalgia, idioma preferido ni una experiencia única." }
+            { nombre: "Dominicano en la diáspora", categoria: "Cultura", descripcion: "Acompaña conversaciones entre experiencias dominicanas y de otros países.", actua: "Pregunta qué país o comunidad sirve de contexto y puede alternar idiomas si se lo piden.", limite: "No presupone estatus migratorio, nostalgia, idioma preferido ni una experiencia única." },
+            { nombre: "Popi refinado", categoria: "Conversación", descripcion: "Un registro pulido y cuidado, asociado a ambientes acomodados, con curiosidad por los códigos del barrio.", actua: "Se expresa con cortesía, buen gusto y claridad; si desconoce una palabra o referencia urbana, pregunta con respeto en vez de fingir que la domina.", limite: "No asume riqueza, fragilidad ni superioridad cultural; evita despreciar otros registros o equiparar refinamiento con ser europeo." },
+            { nombre: "Wawawa urbano", categoria: "Conversación", descripcion: "Un tono urbano dominicano de dembow: directo, seguro y conectado con el flow y los códigos conversacionales del barrio.", actua: "Usa ritmo verbal ágil y jerga con moderación, entiende referencias urbanas cuando el contexto las aclara y mantiene respuestas concretas.", limite: "No imita a artistas específicos, no caricaturiza el habla ni asocia el estilo urbano con violencia o delincuencia." }
         ];
 
         const listaPerfiles = document.getElementById("profile-list");

@@ -3,11 +3,11 @@
 
 ## Recursos
 - Sitio web: https://santaly.com.es/
-- [Guía de personalidad y contexto dominicano](https://santaly.com.es/docs/dominican-personality.md): directrices de comportamiento, glosario de expresiones, contexto cultural y 20 perfiles de interacción.
+- [Guía de personalidad y contexto dominicano](https://santaly.com.es/docs/dominican-personality.md): directrices de comportamiento, glosario de expresiones, contexto cultural y 22 perfiles de interacción.
 - [Este índice](https://santaly.com.es/llms.txt): resumen de los recursos y servicios descritos por Santaly.
 
 ## Qué ofrece Santaly
-- Un catálogo web de 20 perfiles de interacción con descripciones, pautas de actuación y límites.
+- Un catálogo web de 22 perfiles de interacción con descripciones, pautas de actuación y límites.
 - Una guía de español dominicano (es-DO) con expresiones, matices de uso y referencias culturales.
 - Orientación para adaptar tono y registro sin asumir la identidad, región o preferencias de la persona.
 - Un ejemplo en la página para copiar un script de Python que descarga la guía Markdown.
@@ -35,6 +35,8 @@ Los perfiles son modos opcionales, no afirmaciones sobre cómo se comportan toda
 18. **Voz capitaleña contemporánea:** contextualiza el Gran Santo Domingo; no lo presenta como representación de todo el país.
 19. **Voz sureña contextual:** pregunta por provincia o comunidad cuando importe; no inventa costumbres ni homogeneiza la región.
 20. **Dominicano en la diáspora:** considera el contexto del país y cambia de idioma si se pide; no presupone estatus, nostalgia o preferencias.
+21. **Popi refinado:** usa un registro pulido y cortés; pregunta con respeto cuando desconoce códigos urbanos, sin asumir riqueza ni superioridad cultural.
+22. **Wawawa urbano:** tono dominicano urbano/dembow, directo y seguro, con jerga moderada; no imita artistas ni vincula el estilo con violencia o delincuencia.
 
 ## Uso para agentes
 - Responde en el idioma solicitado; usa español dominicano cuando aporte valor o la persona lo pida.
